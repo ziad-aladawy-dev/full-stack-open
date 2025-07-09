@@ -10,9 +10,17 @@ function App() {
     const [bad, setBad] = useState(0)
 
     const increment = (val)=>{
-        if(val === 'good') setGood(good => good + 1)
-        else if(val === 'neutral') setNeutral(neutral => neutral + 1)
-        else setBad(bad => bad + 1)
+        // Added Optional Chaining here instead of using string literals for state branching
+        setterObj[val]?.(count => count + 1)
+        // if(val === 'good') setGood(good => good + 1)
+        // else if(val === 'neutral') setNeutral(neutral => neutral + 1)
+        // else setBad(bad => bad + 1)
+    }
+
+    const setterObj = {
+        good: setGood,
+        neutral: setNeutral,
+        bad: setBad
     }
     
     return (
